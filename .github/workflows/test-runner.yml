@@ -1,0 +1,21 @@
+name: Test Azure Runner
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: [self-hosted, azure]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify Runner
+        run: |
+          echo "Running on Azure VM"
+          uname -a
+
+      - name: Test Docker
+        run: |
+          docker run hello-world || echo "Docker not installed"
